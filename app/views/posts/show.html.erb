@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+      <% if @post.genre == "総合"%>
+          <p>
+            <strong>Name:</strong>
+            <%= @post.name %>
+          </p>
+
+          <p>
+            <strong>Gender:</strong>
+            <%= @post.gender %>
+          </p>
+      <% end %>
+      <% if @post.genre == "プログラミング"%>
+          <p>
+            <strong>Body:</strong>
+            <%= @post.body %>
+          </p>
+
+          <p>
+            <strong>Country:</strong>
+            <%= @post.country %>
+          </p>
+      <% end %>
+      <% if @post.genre == "デザイン"%>
+          <p>
+            <strong>Map:</strong>
+            <%= @post.map %>
+          </p>
+
+          <p>
+            <strong>Lecture:</strong>
+            <%= @post.lecture %>
+          </p>
+      <% end %>
+      <% if @post.genre == "マッチング"%>
+          <p>
+            <strong>Image:</strong>
+            <%= @post.image %>
+          </p>
+
+          <p>
+            <strong>Face:</strong>
+            <%= @post.face %>
+          </p>
+      <% end %>
+
+
+      <div class="comment-wrapper">
+        <p>コメント一覧</p>
+        <% @comments.each do |c| %>
+          <div>
+            <%= c.user.email unless c.user.blank? %>
+            <br>
+            <%= c.content %>
+          </div>
+            <br>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <%= form_with(model: [@post, @comment], local: true) do |f| %>
+            <%= f.text_area :content %>
+            <%= button_tag type: "submit" do %>
+              <i class="far fa-comments"></i> コメントする
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

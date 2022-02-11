@@ -1,0 +1,132 @@
+<p id="notice"><%= notice %></p>
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+
+<h1>Posts</h1>
+<br>
+
+<%= link_to 'New Post', new_post_path %>
+
+<div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="all">総合</label>
+    <input id="programming" type="radio" name="tab_item">
+      <label class="tab_item" for="programming">プログラミング</label>
+    <input id="design" type="radio" name="tab_item">
+      <label class="tab_item" for="design">デザイン</label>
+    <input id="matching" type="radio" name="tab_item">
+      <label class="tab_item" for="matching">マッチング</label>
+
+    <div class="tab_content" id="all_content">
+        総合の内容がここに入ります
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Gender</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |post| %>
+          
+              <% if post.genre == "総合"%>
+                <tr>
+                  <td><%= post.name %></td>
+                  <td><%= post.gender %></td>
+                  <td><%= post.user.email %></td>
+                  <td><%= link_to 'Show', post %></td>
+                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+
+    </div>
+    <div class="tab_content" id="programming_content">
+        プログラミングの内容がここに入ります
+        <table>
+          <thead>
+            <tr>
+              <th>Body</th>
+              <th>Country</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @posts.each do |post| %>
+                <% if post.genre == "プログラミング"%>
+                    <tr>
+                      <td><%= post.body %></td>
+                      <td><%= post.country %></td>
+                      <td><%= post.user.email %></td>
+
+                      <td><%= link_to 'Show', post %></td>
+                      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+          </tbody>
+        </table>
+
+    </div>
+    <div class="tab_content" id="design_content">
+        デザインの内容がここに入ります
+        <table>
+          <thead>
+            <tr>
+              <th>Map</th>
+              <th>Lecture</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @posts.each do |post| %>
+                <% if post.genre == "デザイン"%>
+                  <tr>
+                    <td><%= post.map %></td>
+                    <td><%= post.lecture %></td>
+                    <td><%= post.user.email %></td>
+
+                    <td><%= link_to 'Show', post %></td>
+                    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <div class="tab_content" id="matching_content">
+        マッチングの内容がここに入ります
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Face</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @posts.each do |post| %>
+                <% if post.genre == "マッチング"%>
+                  <tr>
+                    <td><%= post.image %></td>
+                    <td><%= post.face %></td>
+                    <td><%= post.user.email %></td>
+
+                    <td><%= link_to 'Show', post %></td>
+                    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>

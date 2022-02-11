@@ -1,0 +1,84 @@
+<h1>New Post</h1>
+
+<%= link_to 'Back', posts_path %>
+
+<div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked>
+        <label class="tab_item" for="all">総合</label>
+    <input id="programming" type="radio" name="tab_item">
+        <label class="tab_item" for="programming">プログラミング</label>
+    <input id="design" type="radio" name="tab_item">
+        <label class="tab_item" for="design">デザイン</label>
+    <input id="matching" type="radio" name="tab_item">
+        <label class="tab_item" for="matching">マッチング</label>
+
+    <div class="tab_content" id="all_content">
+        <%= form_with(model: @post) do |form| %>
+         <%# form.select :faculty, [["総合", "総合"], ["プログラミング", "プログラミング"], ["デザイン", "デザイン"], ["マッチング", "マッチング"]], include_blank: "選択して下さい" %>
+            <%= form.hidden_field :genre, value: "総合" %>
+            <div class="field">
+                <%= form.label :name %>
+                <%= form.text_field :name %>
+            </div>
+
+            <div class="field">
+                <%= form.label :gender %>
+                <%= form.text_field :gender %>
+            </div>
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        <% end %>
+    </div>
+    <div class="tab_content" id="programming_content">
+        <%= form_with(model: @post) do |form| %>
+         <%= form.hidden_field :genre, value: "プログラミング" %>
+            <div class="field">
+                <%= form.label :body %>
+                <%= form.text_field :body %>
+            </div>
+
+            <div class="field">
+                <%= form.label :country %>
+                <%= form.text_field :country %>
+            </div>
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        <% end %>
+    </div>
+    <div class="tab_content" id="design_content">
+        <%= form_with(model: @post) do |form| %>
+         <%= form.hidden_field :genre, value: "デザイン" %>
+            <div class="field">
+                <%= form.label :map %>
+                <%= form.text_field :map %>
+            </div>
+
+            <div class="field">
+                <%= form.label :lecture %>
+                <%= form.text_field :lecture %>
+            </div>
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        <% end %>
+    </div>
+    <div class="tab_content" id="matching_content">
+        <%= form_with(model: @post) do |form| %>
+         <%= form.hidden_field :genre, value: "マッチング" %>
+            <div class="field">
+                <%= form.label :image %>
+                <%= form.text_field :image %>
+            </div>
+
+            <div class="field">
+                <%= form.label :face %>
+                <%= form.text_field :face %>
+            </div>
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        <% end %>
+    </div>
+</div>
